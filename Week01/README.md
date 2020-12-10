@@ -21,11 +21,6 @@
 
 1.css样式俩个样式连起来写是为什么？
 
-```javascript
-.orange.light{
-    background-color: yellow;
-}
-```
 
 2.document.getElementsByClassName("green")[0].classList.add('light');这里获取green为什么是一个数组？
 
