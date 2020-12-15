@@ -5,4 +5,5 @@
 1）词法：number：0-9；operator：+,-,*,/
 2）语法
 2.正则
-1）exec():
+1）exec():用于检索字符串中的正则表达式的匹配，语法：RegExpObject.exec(string)，返回一个数组，其中存放匹配的结果。如果未找到匹配，则返回值为 null。
+返回的数组与调用方法 String.match() 返回的数组是相同的。
