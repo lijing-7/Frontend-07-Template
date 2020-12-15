@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>tictactoc游戏练习</title>
+</head>
+<body>
+<div id="boader"></div>
+
+
+</body>
+<style>
+    .cell {
+        height: 100px;
+        width: 100px;
+        background-color: green;
+        border: 1px solid white;
+        display: inline-block;
+        vertical-align: middle;
+
+        line-height: 100px;
+        font-size: 58px;
+        text-align: center;
+    }
+</style>
+<script>
+    const parrent = [
+        [2, 0, 0],
+        [0, 0, 1],
+        [1, 0, 0]
+    ];
+
+    function show() {
+        let barder = document.getElementById("boader");
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                let cell = document.createElement("div");
+                cell.classList.add('cell');
+                cell.innerText = parrent[i,j] == 2 ? "❌": parrent[i,j] == 1 ? "⭕️": " ";
+                barder.appendChild(cell);
+            }
+            barder.appendChild(document.createElement("br"))
+        }
+    }
+
+    show(parrent)
+</script>
+
+
+</html>

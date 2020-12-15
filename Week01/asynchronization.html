@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>异步练习</title>
+</head>
+<style>
+    div{
+        background-color: gray;
+        border: 1px solid black;
+        margin: 30px;
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        -webkit-border-radius: 5px;
+    }
+    .green.light{
+        background-color: green;
+    }
+    .red.light{
+        background-color: red;
+    }
+    .orange.light{
+        background-color: yellow;
+    }
+    .next{
+        width: 50px;
+        height: 100px;
+        background-color: blue;
+        color: white;
+    }
+</style>
+<body>
+    <div class="green"></div>
+    <div class="red"></div>
+    <div class="orange"></div>
+
+<div id="next">next</div>
+</body>
+<script>
+    function green(){
+        let lights = document.getElementsByTagName("div");
+        for (let i = 0;i<3;i++){
+            lights[i].classList.remove('light');
+            document.getElementsByClassName("green")[0].classList.add('light');
+        }
+    }
+    function red(){
+        let lights = document.getElementsByTagName("div");
+        for (let i = 0;i<3;i++){
+            lights[i].classList.remove('light');
+            document.getElementsByClassName("red")[0].classList.add('light');
+        }
+    }
+    function orange(){
+        let lights = document.getElementsByTagName("div");
+        for (let i = 0;i<3;i++){
+            lights[i].classList.remove('light');
+            document.getElementsByClassName("orange")[0].classList.add('light');
+        }
+    }
+
+    //传统方式：嵌套层级，运行效率低
+    function go(){
+        green()
+        setTimeout(function (){
+            red();
+            setTimeout(function (){
+                orange();
+                setTimeout(function (){
+                    go();
+                },200)
+            },500)
+        },1000)
+    }
+
+
+    //promise  无嵌套，链式回调，可读性高
+    function sleep(t){
+        return new Promise((resolve,reject)=>{
+            setTimeout(resolve,t);
+        })
+    }
+    function goP(){
+        green()
+        sleep(4000).then(()=>{
+            red();
+            return sleep(2000);
+        }).then(()=>{
+            orange();
+            return sleep(5000);
+        }).then(goP);
+
+    }
+
+    //async await + promise 可以使用异步代码一样使用同步代码
+    function happen(element,eventName){
+        return new Promise((resolve,reject)=>{
+            element.addEventListener(eventName,resolve,{once:true})
+        })
+    }
+
+    async function goA(){
+        while (true){
+            green()
+            await happen(document.getElementById('next'),'click');
+            red();
+            await happen(document.getElementById('next'),'click');
+            orange();
+            await happen(document.getElementById('next'),'click');
+        }
+    }
+
+    //generator   * yeild  同步代码模拟异步代码
+    function* goG(){
+        while (true){
+            green();
+            yield sleep(1000);
+            red();
+            yield sleep(2000);
+            orange();
+            yield sleep(3000);
+        }
+    }
+
+    function run(iterator){
+        let {value,done} = iterator.next();
+        if(done)
+            return;
+        if(value instanceof Promise)
+            value.then(()=>{
+                run(iterator)
+            })
+    }
+
+    function co(generator){
+        return function (){
+            return run(generator());
+        }
+    }
+
+    goG =  co(goG);
+
+
+
+
+
+
+
+
+</script>
+
+</html>
