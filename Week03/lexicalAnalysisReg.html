@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>正则词法分析---</title>
+    <title>使用LL算法构建AST-正则表达式</title>
 </head>
 <body>
 
 <script>
-    var regexp = /([0-9\.]+)|([ \t]+])|([\r\n]+)|(\*)|(\/)|(\+)|(\-)/g
+    var regexp = /([0-9\.]+)|([ \t\n\r]+)|([\r\n]+)|(\*)|(\/)|(\+)|(\-)/g
 
     var dictionary = ["Number", "Whitespace", "LineTerminator", "*", "/", "+", "-"];
 
@@ -17,16 +17,16 @@
             result = regexp.exec(source);
 
             if (!result) break;
-            for (let i = 0; i <= dictionary.length; i++) {
+            for (let i = 1; i <= dictionary.length; i++) {
                 if (result[i]) {
-                    console.log(dictionary[i + 1]);
+                    console.log(dictionary[i - 1]);
                 }
             }
             console.log(result)
         }
     }
 
-    tokenize(" 1024 + 24 ")
+    tokenize("1024 + 24 * 25 ")
 </script>
 </body>
 </html>
