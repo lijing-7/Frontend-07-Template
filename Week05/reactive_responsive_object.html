@@ -1,18 +1,41 @@
+<input id="r" type="range" min="0" max="255"/>
+<input id="g" type="range" min="0" max="255"/>
+<input id="b" type="range" min="0" max="255"/>
+<div id="color" style="width: 120px;height: 120px"></div>
+
 <script>
     let callbacks = new Map();
     let useReactivties = [];
+    //每个对象调用 reactivities 时加一个缓存
+    let reactivities = new Map();
 
     let object1 = {
-        c:{a:1},
-        d:'haha',
+        r:1,
+        g:1,
+        b:1,
     }
 
     let po1 = reactive(object1);
 
 
     effect(() => {
-        console.log(po1.c.a)
+        document.getElementById("r").value =  po1.r;
     })
+    effect(() => {
+        document.getElementById("g").value =  po1.g;
+    })
+    effect(() => {
+        document.getElementById("b").value =  po1.b;
+    })
+
+    document.getElementById("r").addEventListener("input", ev => po1.r = ev.target.value);
+    document.getElementById("g").addEventListener("input", ev => po1.g = ev.target.value);
+    document.getElementById("b").addEventListener("input", ev => po1.b = ev.target.value);
+
+    effect(()=>{
+        document.getElementById("color").style.backgroundColor = `rgb(${po1.r},${po1.g},${po1.b})`;
+    })
+
 
     function effect(callback) {
         // callbacks.push(callback);
@@ -31,8 +54,12 @@
         }
     }
 
+    //reactive本身不存储任何状态，reactive将状态都代理到object上
     function reactive(object){
-        return new Proxy(object,{
+        if(reactivities.has(object))
+            return reactivities.get(object);
+
+        let proxy = new Proxy(object,{
             set(obj,props,val){
                 obj[props] = val;
                 // console.log("haha",obj,props,val);
@@ -46,8 +73,15 @@
             get(obj, props) {
                 useReactivties.push([obj,props]);
                 // console.log(obj,props)
+                if (typeof obj[props] == 'object')
+                    return reactive(obj[props]);
+
                 return obj[props];
             }
         })
+
+        reactivities.set(object,proxy)
+
+        return proxy;
     }
 </script>

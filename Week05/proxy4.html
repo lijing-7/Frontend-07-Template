@@ -1,9 +1,12 @@
 <script>
     let callbacks = new Map();
     let useReactivties = [];
+    //每个对象调用 reactivities 时加一个缓存
+    let reactivities = new Map();
 
     let object1 = {
-        c:{a:1},
+        a:{b:20200101},
+        c:{b:20200101},
         d:'haha',
     }
 
@@ -11,7 +14,7 @@
 
 
     effect(() => {
-        console.log(po1.c.a)
+        console.log(po1.c.b)
     })
 
     function effect(callback) {
@@ -31,8 +34,12 @@
         }
     }
 
+    //reactive本身不存储任何状态，reactive将状态都代理到object上
     function reactive(object){
-        return new Proxy(object,{
+        if(reactivities.has(object))
+            return reactivities.get(object);
+
+        let proxy = new Proxy(object,{
             set(obj,props,val){
                 obj[props] = val;
                 // console.log("haha",obj,props,val);
@@ -46,8 +53,15 @@
             get(obj, props) {
                 useReactivties.push([obj,props]);
                 // console.log(obj,props)
+                if (typeof obj[props] == 'object')
+                    return reactive(obj[props]);
+
                 return obj[props];
             }
         })
+
+        reactivities.set(object,proxy)
+
+        return proxy;
     }
 </script>
