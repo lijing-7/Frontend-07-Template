@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d8816bf1-69fc-477f-b641-8802a2758469" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$/.." source="note" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="note" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1mc6dThZFrJvS4uBse3YvrUdu99" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Week07" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="stringConvertUtf_8.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Week06/stringConvertUtf_8.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.stringConvertUtf_8.html" />
+        <item itemvalue="JavaScript Debug.stringConvertUtf_8.html" />
+        <item itemvalue="JavaScript Debug.stringConvertUtf_8.html" />
+        <item itemvalue="JavaScript Debug.stringConvertUtf_8.html" />
+        <item itemvalue="JavaScript Debug.stringConvertUtf_8.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d8816bf1-69fc-477f-b641-8802a2758469" name="Default Changelist" comment="" />
+      <created>1609780619266</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1609780619266</updated>
+      <workItem from="1609780620336" duration="13006000" />
+    </task>
+    <task id="LOCAL-00001" summary="第六周 笔记+作业">
+      <created>1610383216557</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1610383216557</updated>
+    </task>
+    <task id="LOCAL-00002" summary="产生式图片">
+      <created>1610726302994</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1610726302994</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="第六周 笔记+作业" />
+    <MESSAGE value="产生式图片" />
+    <option name="LAST_COMMIT_MESSAGE" value="产生式图片" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="513" y="255" key="#Markdown" timestamp="1610726485073">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="513" y="255" key="#Markdown/0.0.1366.728@0.0.1366.728" timestamp="1610726485073" />
+    <state x="281" y="0" key="CommitChangelistDialog2" timestamp="1610726301703">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="281" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1610726301703" />
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1610726605929">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1610726605929" />
+    <state width="362" height="418" key="Git.Branch.Popup" timestamp="1610726430240">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="362" height="418" key="Git.Branch.Popup/0.0.1366.728@0.0.1366.728" timestamp="1610726430240" />
+    <state x="184" y="8" key="SettingsEditor" timestamp="1610726669901">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1610726669901" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1610383221598">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1610383221598" />
+    <state x="487" y="276" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1610726237590">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="487" y="276" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1610726237590" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1610382959055">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1610382959055" />
+  </component>
+</project>

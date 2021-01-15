@@ -1,0 +1,364 @@
+Index: ../Week04/wildCard.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../Week04/wildCard.js	(revision f82dc1afae92bb4885db2902f192b40aff1f78c8)
++++ ../Week04/wildCard.js	(revision f82dc1afae92bb4885db2902f192b40aff1f78c8)
+@@ -1,63 +0,0 @@
+-function find(source, pattern) {
+-    let startCount = 0;
+-    //查出多少个*号
+-    for (let i = 0; i < pattern.length; i++) {
+-        if (pattern[i] === "*") {
+-            startCount++;
+-        }
+-    }
+-    //考虑边界没有*的情况
+-    if (startCount === 0) {
+-        for (let i = 0; i < pattern.length; i++) {
+-            if (pattern[i] !== source[i] && pattern[i] !== '?')
+-                return false;
+-        }
+-        return;
+-    }
+-
+-    //i代表pattern的位置
+-    let i = 0;
+-    //lastIndex 代表源字符串source的位置
+-    let lastIndex = 0;
+-
+-    //匹配第一个星号之前的字符
+-    for (i = 0; pattern[i] !== '*'; i++) {
+-        if (pattern[i] !== source[i] && pattern[i] !== '?')
+-            return false;
+-    }
+-
+-    //pattern 和 source 在第一个*号之前为一一对应的关系
+-    lastIndex = i;
+-
+-    for (let p = 0; p < startCount - 1; p++) {
+-        i++;
+-        let subPattern = "";
+-        while (pattern[i] !== "*") {
+-            subPattern += pattern[i];
+-            i++;
+-        }
+-
+-        //将字符串里的？替换为正则表达式里的s，S，代表也是任意字符匹配，
+-        let reg = new RegExp(subPattern.replace(/\?/g, "[\\s\\S]"), "g");
+-        //正则lastIndex属性决定exec时从那个位置开始
+-        reg.lastIndex = lastIndex;
+-
+-        if (!reg.exec(source))
+-            return false;
+-
+-        // console.log(reg.exec(source));
+-        lastIndex = reg.lastIndex;
+-
+-    }
+-
+-    //匹配最后一个星号，从后往前循环
+-    for (let j = 0; j <= source.length - lastIndex && pattern[pattern.length - j] !== "*"; j++) {
+-        if (pattern[pattern.length - j] !== source[source.length - j] && pattern[pattern.length - j] !== "?")
+-            return false;
+-    }
+-
+-    return true;
+-
+-}
+-
+-console.log(find("abcaabcdsghgdsdfkt", "sg*d*k"));
+\ No newline at end of file
+Index: ../Week04/.idea/Week04.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../Week04/.idea/Week04.iml	(date 1608817918600)
++++ ../Week04/.idea/Week04.iml	(date 1608817918600)
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="WEB_MODULE" version="4">
++  <component name="NewModuleRootManager">
++    <content url="file://$MODULE_DIR$">
++      <excludeFolder url="file://$MODULE_DIR$/.tmp" />
++      <excludeFolder url="file://$MODULE_DIR$/temp" />
++      <excludeFolder url="file://$MODULE_DIR$/tmp" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/Week06.iml
+===================================================================
+--- .idea/Week06.iml	(date 1609780627271)
++++ .idea/Week06.iml	(date 1609780627271)
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="WEB_MODULE" version="4">
++  <component name="NewModuleRootManager">
++    <content url="file://$MODULE_DIR$">
++      <excludeFolder url="file://$MODULE_DIR$/.tmp" />
++      <excludeFolder url="file://$MODULE_DIR$/temp" />
++      <excludeFolder url="file://$MODULE_DIR$/tmp" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: ../Week04/.idea/codeStyles/codeStyleConfig.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../Week04/.idea/codeStyles/codeStyleConfig.xml	(date 1608817918663)
++++ ../Week04/.idea/codeStyles/codeStyleConfig.xml	(date 1608817918663)
+@@ -0,0 +1,5 @@
++<component name="ProjectCodeStyleConfiguration">
++  <state>
++    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default" />
++  </state>
++</component>
+\ No newline at end of file
+Index: .idea/modules.xml
+===================================================================
+--- .idea/modules.xml	(date 1609780627286)
++++ .idea/modules.xml	(date 1609780627286)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/Week06.iml" filepath="$PROJECT_DIR$/.idea/Week06.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: ../Week04/.idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../Week04/.idea/modules.xml	(date 1608817918647)
++++ ../Week04/.idea/modules.xml	(date 1608817918647)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/Week04.iml" filepath="$PROJECT_DIR$/.idea/Week04.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/vcs.xml
+===================================================================
+--- .idea/vcs.xml	(date 1609780627317)
++++ .idea/vcs.xml	(date 1609780627317)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: ../Week04/.idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../Week04/.idea/vcs.xml	(date 1608817918694)
++++ ../Week04/.idea/vcs.xml	(date 1608817918694)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/codeStyles/codeStyleConfig.xml
+===================================================================
+--- .idea/codeStyles/codeStyleConfig.xml	(date 1609780627317)
++++ .idea/codeStyles/codeStyleConfig.xml	(date 1609780627317)
+@@ -0,0 +1,5 @@
++<component name="ProjectCodeStyleConfiguration">
++  <state>
++    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default" />
++  </state>
++</component>
+\ No newline at end of file
+Index: ../Week05/.idea/Week05.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../Week05/.idea/Week05.iml	(date 1609170138629)
++++ ../Week05/.idea/Week05.iml	(date 1609170138629)
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="WEB_MODULE" version="4">
++  <component name="NewModuleRootManager">
++    <content url="file://$MODULE_DIR$">
++      <excludeFolder url="file://$MODULE_DIR$/.tmp" />
++      <excludeFolder url="file://$MODULE_DIR$/temp" />
++      <excludeFolder url="file://$MODULE_DIR$/tmp" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: ../Week05/.idea/codeStyles/codeStyleConfig.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../Week05/.idea/codeStyles/codeStyleConfig.xml	(date 1609170138658)
++++ ../Week05/.idea/codeStyles/codeStyleConfig.xml	(date 1609170138658)
+@@ -0,0 +1,5 @@
++<component name="ProjectCodeStyleConfiguration">
++  <state>
++    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default" />
++  </state>
++</component>
+\ No newline at end of file
+Index: ../Week04/wildCard.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../Week04/wildCard.html	(date 1609173073462)
++++ ../Week04/wildCard.html	(date 1609173073462)
+@@ -0,0 +1,66 @@
++
++<script>
++
++    function find(source, pattern) {
++    let startCount = 0;
++    //查出多少个*号
++    for (let i = 0; i < pattern.length; i++) {
++    if (pattern[i] === "*") {
++    startCount++;
++}
++}
++    //考虑边界没有*的情况
++    if (startCount === 0) {
++    for (let i = 0; i < pattern.length; i++) {
++    if (pattern[i] !== source[i] && pattern[i] !== '?')
++    return false;
++}
++    return;
++}
++
++    //i代表pattern的位置
++    let i = 0;
++    //lastIndex 代表源字符串source的位置
++    let lastIndex = 0;
++
++    //匹配第一个星号之前的字符
++    for (i = 0; pattern[i] !== '*'; i++) {
++    if (pattern[i] !== source[i] && pattern[i] !== '?')
++    return false;
++}
++
++    //pattern 和 source 在第一个*号之前为一一对应的关系
++    lastIndex = i;
++
++    for (let p = 0; p < startCount - 1; p++) {
++    i++;
++    let subPattern = "";
++    while (pattern[i] !== "*") {
++    subPattern += pattern[i];
++    i++;
++}
++
++    //将字符串里的？替换为正则表达式里的s，S，代表也是任意字符匹配，
++    let reg = new RegExp(subPattern.replace(/\?/g, "[\\s\\S]"), "g");
++    //正则lastIndex属性决定exec时从那个位置开始
++    reg.lastIndex = lastIndex;
++
++    if (!reg.exec(source))
++    return false;
++
++    // console.log(reg.exec(source));
++    lastIndex = reg.lastIndex;
++
++}
++
++    //匹配最后一个星号，从后往前循环
++    for (let j = 0; j <= source.length - lastIndex && pattern[pattern.length - j] !== "*"; j++) {
++    if (pattern[pattern.length - j] !== source[source.length - j] && pattern[pattern.length - j] !== "?")
++    return false;
++}
++
++    return true;
++
++}
++
++</script>
+Index: ../Week05/.idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../Week05/.idea/modules.xml	(date 1609170138640)
++++ ../Week05/.idea/modules.xml	(date 1609170138640)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/Week05.iml" filepath="$PROJECT_DIR$/.idea/Week05.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: ../Week03/.idea/codeStyles/codeStyleConfig.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../Week03/.idea/codeStyles/codeStyleConfig.xml	(date 1608307798682)
++++ ../Week03/.idea/codeStyles/codeStyleConfig.xml	(date 1608307798682)
+@@ -0,0 +1,5 @@
++<component name="ProjectCodeStyleConfiguration">
++  <state>
++    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default" />
++  </state>
++</component>
+\ No newline at end of file
+Index: ../Week05/.idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../Week05/.idea/vcs.xml	(date 1609170138676)
++++ ../Week05/.idea/vcs.xml	(date 1609170138676)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: ../Week03/.idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../Week03/.idea/vcs.xml	(date 1608307798709)
++++ ../Week03/.idea/vcs.xml	(date 1608307798709)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
