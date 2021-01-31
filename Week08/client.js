@@ -3,7 +3,7 @@ const net = require("net");
 class Request {
     constructor(options) {
         this.method = options.method || "GET";
-        this.host = options.host;
+        this.host = options.host || "127.0.0.1";
         this.port = options.port || 80;
         this.path = options.path || "/";
         this.body = options.body || {};
@@ -21,7 +21,7 @@ class Request {
 
     send(connection) {
         return new Promise((resolve, reject) => {
-            const parser = new ResponseParser;
+            const parser = new ResponseParser();
             if (connection){
                 connection.write(this.toString());
             }else{
@@ -29,11 +29,12 @@ class Request {
                     host:this.host,
                     port:this.port
                 },()=>{
+                    console.log("连上啦")
                     connection.write(this.toString());
                 })
             }
             connection.on('data',(data)=>{
-                console.log(data.toString());
+                console.log('connection on', data.toString())
                 parser.receive(data.toString());
                 if (parser.isFinished){
                     resolve(parser.response);
@@ -45,6 +46,10 @@ class Request {
                 reject(err);
                 connection.end();
             })
+
+            connection.on('end', () => {
+                console.log('Client end.');
+            });
 
         })
     }
@@ -112,7 +117,7 @@ class ResponseParser{
                 this.current = this.WAITING_HEADER_SPACE;
             }else if (char === '\r'){
                 this.current = this.WAITING_HEADER_BLOCK_END;
-                if (this.headers['Transfor-Encoding'] === 'chunked'){
+                if (this.headers['Transfer-Encoding'] === 'chunked'){
                     this.bodyParser = new TrunkedBodyParser();
                 }
             }else{
@@ -140,7 +145,7 @@ class ResponseParser{
                 this.current = this.WAITING_BODY;
             }
         }else if (this.current === this.WAITING_BODY){
-            this.bodyParser.receiveChar1(char);
+            this.bodyParser.receiveChar(char)
         }
 
     }
@@ -159,7 +164,7 @@ class TrunkedBodyParser{
         this.current = this.WAITING_LENGTH;
     }
 
-    receiveChar1(char) {
+    receiveChar(char) {
         if (this.current === this.WAITING_LENGTH){
             if (char === '\r'){
                 if (this.length === 0){
@@ -180,7 +185,7 @@ class TrunkedBodyParser{
             this.content.push(char);
             this.length--;
             if (this.length === 0){
-                this.content === this.WAITING_NEW_LINE;
+                this.current === this.WAITING_NEW_LINE;
             }
         }
         else if (this.current === this.WAITING_NEW_LINE){
@@ -202,12 +207,12 @@ class TrunkedBodyParser{
 
 void async function () {
     let request = new Request({
-        method: 'post',
+        method: 'POST',
         host: '127.0.0.1',
-        port: '8088',
+        port: '8080',
         path: '/',
         headers: {
-            ['X-Foo2']: 'customed'
+            ['X-Foo2']: 'customed',
         },
         body: {
             name: 'winter'
@@ -215,7 +220,6 @@ void async function () {
     });
 
     let response = await request.send();
-
     console.log(response);
 
 }();

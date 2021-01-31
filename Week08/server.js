@@ -12,6 +12,6 @@ http.createServer((req, res) => {
         res.writeHead(200, {'Content-Type':'text/html'})
         res.end('test')
     });
-}).listen('8088')
+}).listen('8080')
 
 console.log("server is start!")
