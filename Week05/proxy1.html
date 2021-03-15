@@ -1,0 +1,48 @@
+<script>
+<!--    proxy基本用法-->
+
+    let obj = {
+    a: 1,
+    b: 2,
+    }
+
+    //第二个config对象，对po这个对象做的钩子
+    let po = new Proxy(obj,{
+    set(obj,props,val){
+        console.log(obj,props,val)
+     },
+    getPrototypeOf(obj){
+    console.log(obj)
+    }
+    })
+
+<!--    proxy 基本用法-->
+<!--    模仿vue3.0 reactive 实现原理-->
+
+let object1 = {
+    c:78,
+    d:'haha',
+}
+
+let po1 = reactive(object1);
+
+function reactive(object){
+    return new Proxy(object,{
+        set(obj,props,val){
+            obj[props] = val;
+            console.log(obj,props,val)
+            return obj[props];
+        },
+        get(obj, props) {
+            console.log(obj,props)
+            return obj[props];
+        }
+    })
+}
+
+<!--    模仿vue3.0 reactive 实现原理-->
+
+
+
+
+</script>

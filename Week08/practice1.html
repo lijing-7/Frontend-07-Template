@@ -1,0 +1,45 @@
+<script>
+    // 不使用状态机下处理字符串
+    function match(string){
+        let isFound = false;
+        for (let s of string){
+            if (s==='a'){
+                isFound = true;
+            }else if (isFound && s==='b'){
+                return true;
+            }else{
+                isFound = false;
+            }
+        }
+        return false;
+    }
+    match("abasdasda")
+
+    //匹配多个
+    function match2(string){
+        let foundA = false;
+        let foundB = false;
+        let foundC = false;
+        let foundD = false;
+        let foundE = false;
+        for (let c of string){
+            if (c == 'a') { foundA = true; }
+            else if (foundA && !foundB && c == 'b') { foundB = true; }
+            else if (foundB && !foundC && c == 'c') { foundC = true; }
+            else if (foundC && !foundD && c == 'd') { foundD = true; }
+            else if (foundD && !foundE && c == 'e') { foundE = true; }
+            else if (foundE && c == 'f') { return true;}
+            else{
+                foundA = false;
+                foundB = false;
+                foundC = false;
+                foundD = false;
+                foundE = false;
+            }
+        }
+        return false;
+    }
+
+
+
+</script>
