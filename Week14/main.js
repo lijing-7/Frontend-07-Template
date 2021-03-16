@@ -38,17 +38,12 @@ class Carousel extends Component{
                     children[ops].style.transition = "none";
                     children[ops].style.transform = `translateX(${- ops * 500 + offset * 500 + x * 500}px)`;
                 }
-
-                for (let child of children){
-                    child.style.transition = "none";
-                    child.style.transform =`translateX(${ position * 500 +  x}px)`;
-                }
             }
 
             let up = event => {
                 console.log('up');
                 let x = event.clientX - startX;
-                position = position - Math.round(x / 500);
+                position -= Math.round(x / 500);
 
                 for (let offset of [0,- Math.sign(Math.round(x/500)-x + 250 * Math.sign(x))]){
                     let ops = position + offset;
@@ -56,11 +51,6 @@ class Carousel extends Component{
 
                     children[ops].style.transition = "";
                     children[ops].style.transform = `translateX(${- ops * 500 + offset * 500 }px)`;
-                }
-
-                for (let child of children){
-                    child.style.transition = "";
-                    child.style.transform =`translateX(${- position * 500 }px)`;
                 }
                 document.removeEventListener('mousemove',move);
                 document.removeEventListener('mouseup',up);
