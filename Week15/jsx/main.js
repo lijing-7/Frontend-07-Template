@@ -19,10 +19,12 @@ console.log("123465");
 
 
 let ly = new TimeLine();
- ly.add(new Animation({set b(v){console.log(v)}},'b',0,100,1000,null));
+ // ly.add(new Animation({set b(v){console.log(v)}},'b',0,100,1000,null));
 
+/*window.ly = ly;
+window.animation = new Animation({set b(v){console.log(v)}},'b',0,100,1000,null);
 
-ly.start();
+ly.start();*/
 
 
 

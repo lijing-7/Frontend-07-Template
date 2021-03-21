@@ -1,5 +1,5 @@
 module.exports = {
-    entry: './main.js',
+    entry: './animationDemo.js',
     //配置babel
     module: {
         rules: [
